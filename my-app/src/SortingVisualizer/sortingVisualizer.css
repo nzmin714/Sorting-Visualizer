@@ -1,0 +1,16 @@
+.array-container {
+    margin: auto;
+    width: 80%;
+    border: 2px solid black;
+    padding: 10px;
+    margin-top: 40px;
+    
+}
+
+.array-bar {
+    width: 0.1em;
+    background-color: black;
+    display: inline-block;
+    margin: 0 5px;
+
+}
