@@ -1,27 +1,23 @@
 export function getMergeSortAnimation(array) {
     const animations = [];
-    if (array.length <= 1) {
-        return array;
-    }
-    const auxillaryArray = array.slice();
-    mergeSortHelper(array, 0, array.length - 1, auxillaryArray, animations);
+    if (array.length <= 1) return array;
+    const auxiliaryArray = array.slice();
+    mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
     return animations;
-
 }
 
 function mergeSortHelper(
     mainArray,
     startIdx,
     endIdx,
-    auxillaryArray,
-    animations
+    auxiliaryArray,
+    animations,
 ) {
     if (startIdx === endIdx) return;
-    const middleIdx = Math.floor((startIdx, endIdx) / 2);
-    mergeSortHelper(auxillaryArray, startIdx, middleIdx, endIdx, animations);
-    mergeSortHelper(auxillaryArray, middleIdx + 1, endIdx, mainArray, animations);
-    doMerge(mainArray, startIdx, middleIdx, endIdx, auxillaryArray, animations);
-
+    const middleIdx = Math.floor((startIdx + endIdx) / 2);
+    mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
+    mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
+    doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
 }
 
 function doMerge(
@@ -29,39 +25,41 @@ function doMerge(
     startIdx,
     middleIdx,
     endIdx,
-    auxillaryArray,
+    auxiliaryArray,
     animations
 ) {
     let k = startIdx;
     let i = startIdx;
     let j = middleIdx + 1;
-    while (i <= middleIdx && j <= endIdx) {
-        animations.push([i, j]);
-        animations.push([i, j]);
-        
-        if (auxillaryArray[i] <=  auxillaryArray[j]) {
-            animations.push([k, auxillaryArray[i]]);
-            mainArray[k++] = auxillaryArray[i++];
-        } else {
-            animations.push(k, auxillaryArray[j]);
-            mainArray[k++] = auxillaryArray[j++];
-        }
+    while (i <= middleIdx && j <= endIdx) { 
+      animations.push([i, j]); 
+      animations.push([i, j]);
+      if (auxiliaryArray[i] <= auxiliaryArray[j]) {
+        animations.push([k, auxiliaryArray[i]]);
+        mainArray[k++] = auxiliaryArray[i++];
+      } else {
+        animations.push([k, auxiliaryArray[j]]);
+        mainArray[k++] = auxiliaryArray[j++];
+      }
     }
-
     while (i <= middleIdx) {
-        animations.push([i,i]);
-        animations.push([i,i]);
-        animations.push([k, auxillaryArray[i]]);
-        mainArray[k++] = auxillaryArray[i++];
+      animations.push([i, i]);
+      animations.push([i, i]);
+      animations.push([k, auxiliaryArray[i]]);
+      mainArray[k++] = auxiliaryArray[i++];
     }
-
     while (j <= endIdx) {
-        animations.push([j,j]);
-        animations.push([j,j]);
-        animations.push([k, auxillaryArray[j]]);
-        mainArray[j++] = auxillaryArray[j++];
+      animations.push([j, j]);
+      animations.push([j, j]);
+      animations.push([k, auxiliaryArray[j]]);
+      mainArray[k++] = auxiliaryArray[j++];
     }
+  }
 
+
+
+export function getSelectionSort(array) {
+    for (let i=0; i<array.length; i++) {
+        console.log(i);
+    }
 }
-
-
